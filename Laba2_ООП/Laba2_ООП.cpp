@@ -78,21 +78,12 @@ public:
         printf("(%d;%d;%d)\n", x, y, Color);
     }
 
-    ColorPoint(int x, int y, int Color) :Point(x, y) {
-        printf("'Цветная точка с координатами'");
-        this->x = x;
-        this->y = y;
-        this->Color = Color;
-        printf("Конструктор с параметрами класса ColorPoint запустился\n");
-        printf("(%d;%d;%d)\n", x, y, Color);
-    }
-
     ColorPoint(const ColorPoint& c) {
         printf("'Цветная точка-копия'");
         x = c.x;
         y = c.y;
         Color = c.Color;
-        printf("Конструктор копирования класса СolorPoint запустился\n");
+        //printf("Конструктор копирования класса СolorPoint запустился\n");
         printf("(%d;%d;%d)\n", x, y, Color);
     }
 
@@ -140,17 +131,45 @@ public:
 };
 
 int main() {
-{
     {
-        printf("================================================\n");
-        printf("         Взаимодействие с классом Point \n");
-        printf("================================================\n");
+        {
+            printf("================================================\n");
+            printf("         Взаимодействие с классом Point \n");
+            printf("================================================\n");
 
+            //Статическое создание
+            {
+                Point point1;
+                Point point2(1, 2);
+                Point point3(point2);
+            }
+
+            _getch();
+            printf("\n\n");
+
+            //Динамическое создание
+            {
+                Point* point0 = new Point();
+                Point* point01 = new Point(3, 4);
+                Point* point02 = new Point(*point01);
+                point0->reset();
+                point0->move(6, 6);
+                delete point0;
+                delete point01;
+                delete point02;
+            }
+        }
+    }
+    printf("\n\n");
+    printf("====================================================\n");
+    printf("        Взаимодействие с классом ColorPoint \n");
+    printf("====================================================\n");
+    {
         //Статическое создание
         {
-            Point point1;
-            Point point2(1, 2);
-            Point point3(point2);
+            ColorPoint CPoint1;
+            ColorPoint CPoint2(1, 2, 25);
+            ColorPoint CPoint3(CPoint2);
         }
 
         _getch();
@@ -158,40 +177,51 @@ int main() {
 
         //Динамическое создание
         {
-            Point* point0 = new Point();
-            Point* point01 = new Point(3, 4);
-            Point* point02 = new Point(*point01);
-            point0->reset();
-            point0->move(6, 6);
-            delete point0;
-            delete point01;
-            delete point02;
+            Point* CPoint = new ColorPoint(1, 2, 25);
+            delete CPoint;
+
+            ColorPoint* CPoint0 = new ColorPoint();
+            ColorPoint* CPoint01 = new ColorPoint(3, 4, 25);
+            ColorPoint* CPoint02 = new ColorPoint(*CPoint01);
+
+            delete CPoint0;
+            delete CPoint01;
+            delete CPoint02;
         }
     }
-}
-printf("\n\n");
-printf("====================================================\n");
-printf("        Взаимодействие с классом ColorPoint \n");
-printf("====================================================\n");
-{
-    //Статическое создание
+    printf("\n\n");
+    printf("===============================================\n");
+    printf("         Взаимодействие с классом Line \n");
+    printf("===============================================\n");
     {
-        ColorPoint CPoint1;
-        ColorPoint CPoint2(1, 2, 25);
-        ColorPoint CPoint3(CPoint2);
+        //Статическое создание
+        {
+            Line line1;
+            Line line2(1, 2, 3, 4);
+            Line line3(line2);
+        }
+
+        _getch();
+        printf("\n\n");
+
+        //Динамическое создание
+        {
+            Line* line0 = new Line();
+            delete line0;
+            Line* line01 = new Line(3, 4, 5, 6);
+            Line* line02 = new Line(*line01);
+            delete line01;
+            delete line02;
+        }
     }
 
     _getch();
-    printf("\n\n");
+    return 0;
+};
 
-    //Динамическое создание
-    {
-    }
-}
-printf("\n\n");
-printf("===============================================\n");
-printf("         Взаимодействие с классом Line \n");
-printf("===============================================\n");
-{
+
+    
+
+
 
 
