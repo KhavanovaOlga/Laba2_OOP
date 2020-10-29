@@ -102,6 +102,43 @@ public:
     }
 };
 
+class Line {
+
+public:
+    Point* p1;
+    Point* p2;
+
+    Line() {
+        printf("'Пустая линия'\n");
+        p1 = new Point;
+        p2 = new Point;
+        printf("Конструктор по умолчанию класса Line запустился\n");
+        printf("p1(%d;%d) p2(%d;%d)\n", p1->x, p1->y, p2->x, p2->y);
+    }
+
+    Line(int x, int y, int x2, int y2) {
+        printf("'Линия с координатами'\n");
+        p1 = new Point(x, y);
+        p2 = new Point(x2, y2);
+        printf("Конструктор с параметрами класса Line запустился\n");
+    }
+
+    Line(const Line& l) {
+        printf("'Линия-копия'\n");
+
+        p1 = new Point(*(l.p1));
+        p2 = new Point(*(l.p2));
+        printf("p1(%d;%d) p2(%d;%d)\n", p1->x, p1->y, p2->x, p2->y);
+    }
+
+    ~Line() {
+        printf("Удаление линии с координатами p1(%d;%d) p2(%d;%d)\n", p1->x, p1->y, p2->x, p2->y);
+        delete p1;
+        delete p2;
+        printf("Деструктор класса Line запустился\n");
+    }
+};
+
 int main()
 {
     std::cout << "Hello World!\n";
