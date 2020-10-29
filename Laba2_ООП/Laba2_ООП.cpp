@@ -139,9 +139,59 @@ public:
     }
 };
 
-int main()
+int main() {
 {
-    std::cout << "Hello World!\n";
+    {
+        printf("================================================\n");
+        printf("         Взаимодействие с классом Point \n");
+        printf("================================================\n");
+
+        //Статическое создание
+        {
+            Point point1;
+            Point point2(1, 2);
+            Point point3(point2);
+        }
+
+        _getch();
+        printf("\n\n");
+
+        //Динамическое создание
+        {
+            Point* point0 = new Point();
+            Point* point01 = new Point(3, 4);
+            Point* point02 = new Point(*point01);
+            point0->reset();
+            point0->move(6, 6);
+            delete point0;
+            delete point01;
+            delete point02;
+        }
+    }
 }
+printf("\n\n");
+printf("====================================================\n");
+printf("        Взаимодействие с классом ColorPoint \n");
+printf("====================================================\n");
+{
+    //Статическое создание
+    {
+        ColorPoint CPoint1;
+        ColorPoint CPoint2(1, 2, 25);
+        ColorPoint CPoint3(CPoint2);
+    }
+
+    _getch();
+    printf("\n\n");
+
+    //Динамическое создание
+    {
+    }
+}
+printf("\n\n");
+printf("===============================================\n");
+printf("         Взаимодействие с классом Line \n");
+printf("===============================================\n");
+{
 
 
